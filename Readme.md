@@ -1,6 +1,5 @@
 
 ---
-
 # Regression Analysis Simulator and Visualizer
 
 This project is a **Python-based regression visualizer** built with **Pygame**.
