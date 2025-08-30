@@ -38,19 +38,7 @@ def convert_to_plot(coords):
     newY = SCREEN_HEIGHT - (y + 10)
     return newX,newY
 
-def convert_to_normal(coords):
-    ''' Scales and modifies the data to be normal (the cordinate system is changed here)'''
-    x = coords[0]
-    y = coords[1]
 
-    x = x - 10
-    y = (SCREEN_HEIGHT - y )- 10
-
-    x /= ((SCREEN_WIDHT - 10) // X_SCALE)
-    y /=  ((SCREEN_HEIGHT- 10) // Y_SCALE)
-
-    
-    return x,y
 
 def scatter_data():
     ''' This function scatters data on the graph '''
@@ -89,9 +77,7 @@ def best_fit_line_coords(x,y):
     return (x_min, y_min), (x_max, y_max)
 
 def plot_best_fit_line():
-    print(convert_to_normal(fit_line[0]),convert_to_normal(fit_line[1]))
-    print((fit_line[0]),(fit_line[1]))
-    pygame.draw.line(screen,BLUE,convert_to_normal(fit_line[0]),convert_to_normal(fit_line[1]))
+    pygame.draw.line(screen,BLUE,convert_to_plot(fit_line[0]),convert_to_plot(fit_line[1]),width=2)
 
 
 # claculating stuff
