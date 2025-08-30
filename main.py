@@ -1,6 +1,7 @@
 import pygame
 from constants import *
 from data import *
+import math
 
 # initializing stuff
 pygame.init()
@@ -9,6 +10,7 @@ pygame.display.init()
 # font stuff
 pygame.font.init()
 label_scatter = pygame.font.SysFont('Times New Roman',15)
+error_shower = pygame.font.SysFont("Algerian",18)
 
 
 
@@ -50,11 +52,12 @@ def scatter_data():
 
 
 def best_fit_line_coords(x,y):
-
     """
-    Given two lists x and y, returns the start and end coordinates
-    of the best fit line segment (for plotting).
-    Output: ((x_min, y_start), (x_max, y_end))
+    Given two lists x and y, returns:
+    1. The start and end coordinates of the best fit line segment (for plotting).
+    2. The line function f(x) as a lambda.
+    
+    Output: ((x_min, y_start), (x_max, y_end)), f
     """
     if len(x) != len(y):
         raise ValueError("x and y must have the same length")
@@ -74,14 +77,25 @@ def best_fit_line_coords(x,y):
     y_min = m * x_min + b
     y_max = m * x_max + b
 
-    return (x_min, y_min), (x_max, y_max)
+    line_func = lambda X: m * X + b
+
+    return ( (x_min, y_min), (x_max, y_max) ), line_func
+
 
 def plot_best_fit_line():
     pygame.draw.line(screen,BLUE,convert_to_plot(fit_line[0]),convert_to_plot(fit_line[1]),width=2)
 
+def add_error_lines():
+    ''' This functions adds the error lines on the graph'''
+    for x,y in zip(X,Y):
+        error = round(math.dist((x,y),(x,fit_line_eq(x))),2)
+        pygame.draw.line(screen,COLOR_ERROR_LINE,convert_to_plot((x,y)),convert_to_plot((x,fit_line_eq(x))),width=2)
+        screen.blit(error_shower.render(str(error),True,YELLOW),convert_to_plot((x,y)))
+
+
 
 # claculating stuff
-fit_line = best_fit_line_coords(X,Y)
+fit_line, fit_line_eq= best_fit_line_coords(X,Y)
 
 
 
@@ -100,6 +114,7 @@ while running:
     update_grid()
     scatter_data()
     plot_best_fit_line()
+    add_error_lines()
 
     pygame.display.update()
 
