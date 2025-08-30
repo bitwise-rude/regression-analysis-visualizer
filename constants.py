@@ -8,7 +8,7 @@ GREEN = (0,255,0)
 BLUE = (0,0,255)
 
 # scatter properties
-SCATTER_RADIUS = 6
+SCATTER_RADIUS = 2
 
 # graph scaling
 X_SCALE = 12
