@@ -33,25 +33,7 @@ It simulates **linear regression analysis** by plotting data points on a grid an
 
 3. Data points from `data.py` are scattered on the screen.
 
-4. Using **linear regression formula**:
 
-   * Slope:
-
-     $$
-     m = \frac{\sum (x_i - \bar{x})(y_i - \bar{y})}{\sum (x_i - \bar{x})^2}
-     $$
-
-   * Intercept:
-
-     $$
-     b = \bar{y} - m\bar{x}
-     $$
-
-   * Best fit line:
-
-     $$
-     y = mx + b
-     $$
 
 5. The program finds the **endpoints of the line segment** within the range of `X`.
 
