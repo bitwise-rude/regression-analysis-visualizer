@@ -90,7 +90,7 @@ def add_error_lines():
     for x,y in zip(X,Y):
         error = round(math.dist((x,y),(x,fit_line_eq(x))),2)
         pygame.draw.line(screen,COLOR_ERROR_LINE,convert_to_plot((x,y)),convert_to_plot((x,fit_line_eq(x))),width=2)
-        screen.blit(error_shower.render(str(error),True,YELLOW),convert_to_plot((x,y)))
+        # screen.blit(error_shower.render(str(error),True,YELLOW),convert_to_plot((x,y)))
 
 
 
